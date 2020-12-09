@@ -1,0 +1,23 @@
+server:
+  port: 8781
+spring:
+  application:
+    name: client
+  cloud:
+    config:
+      uri: http://localhost:8888
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: admin
+    username: tdy
+    url: jdbc:mysql://192.168.201.130:3306/mydata
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+#feign:
+#  hystrix:
+#    enabled: true
+mybatis:
+  mapper-locations: classpath:mybatis/*/*.xml
+  type-aliases-package: com.example.demo.entity

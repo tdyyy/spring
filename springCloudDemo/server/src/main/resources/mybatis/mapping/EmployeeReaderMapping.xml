@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.EmployeeReader">
+    <resultMap id="baseMap" type="com.example.demo.entity.Employee">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="sex" property="sex"></result>
+        <result column="age" property="age"></result>
+        <result column="addr" property="addr"></result>
+        <result column="tel" property="tel"></result>
+        <result column="mail" property="mail"></result>
+    </resultMap>
+    <sql id="baseClumn">
+        id,name,sex,age,addr,tel,mail
+    </sql>
+    <select id="selectById" resultMap="baseMap">
+        select <include refid="baseClumn"></include>
+        from employee where id = #{id}
+    </select>
+    <select id="selectByName" resultMap="baseMap">
+        select <include refid="baseClumn"></include>
+        from employee where name = #{name}
+    </select>
+</mapper>

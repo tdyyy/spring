@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.EmployeeWriter">
+    <sql id="baseClumn">
+        id,name,sex,age,addr,tel,mail
+    </sql>
+    <insert id="addEmployee" parameterType="com.example.demo.entity.Employee">
+        insert into employee (name,sex,age,addr,tel,mail,create_time,update_time)
+        values (#{name,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{age,jdbcType=INTEGER},#{addr,jdbcType=VARCHAR},#{tel,jdbcType=VARCHAR},#{mail,jdbcType=VARCHAR}
+        ,now(),now())
+    </insert>
+    <update id="updateEmployee" parameterType="com.example.demo.entity.Employee">
+        update employee
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="addr != null">
+                addr = #{addr,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                mail = #{mail,jdbcType=VARCHAR},
+            </if>
+            update_time = now()
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <delete id="deleteEmployee" parameterType="com.example.demo.entity.Employee">
+        delete from employee where id = #{id,jdbcType=INTEGER};
+    </delete>
+</mapper>

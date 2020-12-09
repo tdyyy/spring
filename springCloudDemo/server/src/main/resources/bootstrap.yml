@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: admin
+    username: tdy
+    url: jdbc:mysql://192.168.201.130:3306/mydata
+  cloud:
+    config:
+      uri: http://localhost:8888
+      discovery:
+        enabled: true
+        service-id: config
+      profile: test
+      name: server
+  application:
+    name: server
+server:
+  port: ${port}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+#springbootadmin
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+mybatis:
+  mapper-locations: classpath:mybatis/*/*.xml
+  type-aliases-package: com.example.demo.entity
