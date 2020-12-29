@@ -20,7 +20,19 @@
     </properties>
 
     <dependencies>
-<!--        没有这个会报找不到ConfigurableBootstrapContext-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.14.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+
+        <!--        没有这个会报找不到ConfigurableBootstrapContext-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-context</artifactId>

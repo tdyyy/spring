@@ -20,7 +20,36 @@
     </properties>
 
     <dependencies>
-<!--        cloud包需要和boot的版本号对应 否则出现类找不到 boot版本千万要选后面带RELEASE的 要不然找都找不着 对应地址 https://start.spring.io/actuator/info-->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-quartz -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+            <version>2.3.7.RELEASE</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>2.3.7.RELEASE</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>2.3.7.RELEASE</version>
+        </dependency>
+
+        <!--        cloud包需要和boot的版本号对应 否则出现类找不到 boot版本千万要选后面带RELEASE的 要不然找都找不着 对应地址 https://start.spring.io/actuator/info-->
 <!--        添加这个依赖boot才能扫描bootstrap配置 -->
         <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-context -->
         <dependency>

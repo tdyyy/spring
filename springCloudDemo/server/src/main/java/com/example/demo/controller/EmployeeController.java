@@ -18,17 +18,14 @@ public class EmployeeController {
     private EmployeeService employeeService;
     @GetMapping("/find/{id}")
     public String getEmpById(@PathVariable int id){
-        logger.info("入参{}",id);
         return employeeService.getById(id).toString();
     }
     @PostMapping("/add")
     public String addEmp(Employee employee){
-        logger.info("入参：{}",employee.toString());
         return employeeService.add(employee)==1?"OK":"FALL";
     }
     @PutMapping("/change")
     public String changeEmp(Employee employee){
-        logger.info("入参：{}",employee.toString());
         employeeService.change(employee);
         return employeeService.getById(employee.getId()).toString();
     }

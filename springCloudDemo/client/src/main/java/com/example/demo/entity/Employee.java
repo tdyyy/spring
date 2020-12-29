@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ import lombok.Data;
  * @Vision: 1.0
  */
 @Data
-public class Employee {
+public class Employee implements Serializable {
     /**
      * 员工id
      */
