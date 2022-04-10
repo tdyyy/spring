@@ -20,8 +20,9 @@ public class HelloController {
     @Value("${rokectIp}")
     private String rokectIp;
     @RequestMapping("/hello")
-    public String hello(){
+    public String hello() throws InterruptedException {
         System.out.print("1");
+        Thread.sleep(1001L);
         return "<h1>hello</h1> serviceid="+servicesId;
     }
     @RequestMapping("/config")

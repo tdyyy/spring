@@ -19,15 +19,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class ControllerAspect {
 
-    @Pointcut("execution(* com.example.demo.controller.*.*(..))")
-    public void hello(){}
-    @Before("hello()")
-    public void printParam(JoinPoint joinPoint){
-        Object[] obs = joinPoint.getArgs();
-        log.info("入参:{}", JSONObject.toJSONString(obs));
-    }
-    @AfterThrowing("hello()")
-    public void execption(){
-        System.out.println("发生了异常");
-    }
+//    @Pointcut("execution(* com.example.demo.controller.*.*(..))")
+//    public void hello(){}
+//    @Before("hello()")
+//    public void printParam(JoinPoint joinPoint){
+//        Object[] obs = joinPoint.getArgs();
+//        log.info("入参:{}", JSONObject.toJSONString(obs));
+//    }
+//    @AfterThrowing("hello()")
+//    public void execption(){
+//        System.out.println("发生了异常");
+//    }
 }

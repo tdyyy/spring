@@ -32,4 +32,13 @@ public class EmployeeTest {
         employee.setSex("女");
         System.out.println(service.change(employee));
     }
+
+    @Test
+    public void exceldown(){
+        Employee employee = new Employee();
+        employee.setId(7);
+        employee.setSex("女");
+        service.ExcelImport(employee);
+        System.out.println(service.change(employee));
+    }
 }

@@ -3,6 +3,7 @@ package com.example.demo.dao;
 import com.example.demo.entity.Employee;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *员工读取接口
@@ -22,4 +23,7 @@ public interface EmployeeReader {
      * @return
      */
     public List<Employee> selectByName(String name);
+    public List<Employee> selectAll();
+
+    public List<Map<String,String>> selectToDown(Map<String,Object> param);
 }

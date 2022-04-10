@@ -1,8 +1,11 @@
 package com.example.demo.timer;
 
+import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
+import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,9 +17,17 @@ import org.springframework.stereotype.Component;
 @Order(1)
 public class ScheduIeJobInitlistener implements CommandLineRunner {
     @Autowired
+    @Qualifier("schduler")
+    private Scheduler scheduler;
+    @Autowired
     private TaskService taskSerevice;
     @Override
     public void run(String... args) throws Exception {
-        taskSerevice.ininSchedules();
+//        JobDetail jobDetail = JobBuilder.newJob(ReloadTask.class).withIdentity("init","test").build();
+//        Trigger trigger = TriggerBuilder.newTrigger().withSchedule(CronScheduleBuilder.cronSchedule("0/10 * * * * ? *")).build();
+//        scheduler.scheduleJob(jobDetail,trigger);
+//        if(!scheduler.isShutdown()){
+//            scheduler.start();
+//        }
     }
 }

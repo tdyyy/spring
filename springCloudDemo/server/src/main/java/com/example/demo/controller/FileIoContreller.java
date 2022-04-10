@@ -1,15 +1,17 @@
 package com.example.demo.controller;
 
-import org.apache.http.HttpRequest;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-import org.springframework.beans.factory.annotation.Value;
+import com.alibaba.fastjson.JSONObject;
+import com.example.demo.entity.Employee;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
+import java.util.Map;
 
 /**
  * @Author: tangdy
@@ -17,23 +19,37 @@ import java.io.File;
  * @Vision: 1.0
  */
 @RestController
+@Slf4j
 @RequestMapping("/file")
 public class FileIoContreller {
-    @Value("${files.path}")
-    private String FILESPATH;
-    public File getFile(){
-        return null;
-    }
+//    @Value("${files.path}")
+    private String FILESPATH = "D:\\file\\";
     @RequestMapping("/upload")
-    public void upload(HttpServletRequest request, HttpServletResponse response){
+    public void upload(HttpServletRequest request, Employee emp){
 
         File dir = new File(FILESPATH);
         if(!dir.exists()){
             dir.mkdir();
         }
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        ServletFileUpload fileUpload = new ServletFileUpload(factory);
-//        fileUpload.parseRequest(request.getServletContext());
-
+        log.info("map:{},emp:{}",JSONObject.toJSONString(request.getParameterMap()),emp);
+        Map<String,MultipartFile> map = ((MultipartHttpServletRequest)request).getFileMap();
+        for (String s : map.keySet()) {
+            if(map.get(s).getSize()==0){
+                continue;
+            }
+            MultipartFile multipartFile = map.get(s);
+            File f = new File(FILESPATH+multipartFile.getOriginalFilename());
+            if(!f.getParentFile().exists()){
+                f.getParentFile().mkdirs();
+            }
+            try {
+                if(!f.exists()) {
+                    multipartFile.transferTo(f);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            log.info("k:{},v:{}",s,multipartFile.getOriginalFilename());
+        }
     }
 }

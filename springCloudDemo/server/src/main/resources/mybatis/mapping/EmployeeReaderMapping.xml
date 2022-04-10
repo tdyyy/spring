@@ -21,4 +21,22 @@
         select <include refid="baseClumn"></include>
         from employee where name = #{name}
     </select>
+
+    <select id="selectAll" resultMap="baseMap">
+        select <include refid="baseClumn"></include>
+        from employee
+    </select>
+    <select id="selectToDown" resultType="map">
+        select <include refid="baseClumn"></include>
+        from employee
+        <where>
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
+            <if test="tel != null and tel != ''">
+                tel = #{tel}
+            </if>
+        </where>
+        limit ${start},${limit}
+    </select>
 </mapper>

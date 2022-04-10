@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * @author TDY
  */
@@ -41,5 +46,18 @@ public class ClientController {
     @RequestMapping("/start")
     public void start(){
         consumerService.get();
+    }
+
+
+    public static void main(String[] args) {
+        ConcurrentHashMap<String,String> map = new ConcurrentHashMap<>();
+//        HashMap<String,String> map = new HashMap<>();
+        map.put("1","a");
+        map.put("2","b");
+        map.keySet().forEach(s -> {
+            if(s.equals("2")){
+                map.remove("1");
+            }
+        });
     }
 }

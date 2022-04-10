@@ -22,7 +22,9 @@ public class QuartzManager {
     public void addJob(TaskVo taskVo){
         JobDataMap map = new JobDataMap();
         map.put("taskVo",taskVo);
-        JobDetail detail = JobBuilder.newJob(QuartzTest.class).setJobData(map).build();
+        JobDetail detail = JobBuilder.newJob(QuartzTest.class)
+                .setJobData(map)
+                .withIdentity("count","test").build();
         Trigger trigger = TriggerBuilder.newTrigger()
                 .startAt(DateBuilder.futureDate(1, DateBuilder.IntervalUnit.SECOND)).
                         withSchedule(CronScheduleBuilder.cronSchedule(taskVo.getCron())).build();
@@ -35,4 +37,28 @@ public class QuartzManager {
             e.printStackTrace();
         }
     }
-}
+    public void pauseJob(String id,String group){
+        JobKey jobKey = new JobKey(id,group);
+        try {
+            scheduler.pauseJob(jobKey);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+    public void resumeJob(String id,String group){
+        JobKey jobKey = new JobKey(id,group);
+        try {
+            scheduler.resumeJob(jobKey);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void triggerJob(String id,String group){
+        JobKey jobKey = new JobKey(id,group);
+        try {
+            scheduler.triggerJob(jobKey);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }}
